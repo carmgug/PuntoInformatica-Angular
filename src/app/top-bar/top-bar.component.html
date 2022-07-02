@@ -1,23 +1,29 @@
-<p>
+<section>
   <mat-toolbar>
       <span>{{title}}</span>
       <span class="spacer"></span>
-      <span>{{data}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+
       <div class="button-row">
+
+        <button *ngIf="user" mat-raised-button color="green">
+          {{"Welcome "+user.object.email}}
+        </button>
+
         <!--Bottoni di gestione-->
-        <button [disabled]="!isAuthenticated()" mat-raised-button color="warn" (click)="sendUserToDB()">
+        <button *ngIf="!user"[disabled]="!isAuthenticated()" mat-raised-button color="warn" (click)="sendUserToDB()">
           Verifica login <mat-icon>build</mat-icon>
         </button>
 
-        <button [disabled]="!isAuthenticated()" mat-raised-button  color="basic" (click)="works()">
+        <button *ngIf="user" [disabled]="!isAuthenticated()" mat-raised-button  color="basic" (click)="works()">
           Cerca Prodotti <mat-icon>search</mat-icon>
         </button>
 
-        <button [disabled]="!isAuthenticated()" mat-raised-button color="basic" (click)="works()">
+        <button  *ngIf="user" [disabled]="!isAuthenticated()" mat-raised-button color="basic" (click)="works()">
           Visualizza Carrello <mat-icon>shopping_cart</mat-icon>
         </button>
 
-        <button [disabled]="!isAuthenticated()" mat-raised-button color="basic" (click)="works()">
+        <button *ngIf="user" [disabled]="!isAuthenticated()" mat-raised-button color="basic" (click)="works()">
           Manage store database <mat-icon>build</mat-icon>
         </button>
 
@@ -29,5 +35,5 @@
         </button>
       </div>
   </mat-toolbar>
-</p>
+</section>
 

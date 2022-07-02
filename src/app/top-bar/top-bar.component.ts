@@ -10,19 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
+  //TODO il taso di invio al db, deve diventare verde
+
   title = 'PuntoInformatica';
-  data='';
+  user : any;
 
 
-  constructor(private authService : AuthService,private http:HttpClient ) {
+  constructor(private authService : AuthService,private accountingService:AccountingService ) {
    }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void  {
 
   }
 
-
+   public sendUserToDB(){
+    this.accountingService.getUser()
+    .subscribe(data => {
+      console.log(data);
+      this.user=data;
+    });
+    console.log(this.authService.getInformation()); //debug
+  }
 
 
   private async login() {
@@ -39,14 +47,6 @@ export class TopBarComponent implements OnInit {
   }
 
 
-  public sendUserToDB(){
-    this.http.get('http://localhost:8081/users/logged')
-    .subscribe(data => {
-      console.log(data);
-    })
-    console.log(this.authService.getInformation());
-
-  }
 
   public works(){
     alert("Il tasto funziona");

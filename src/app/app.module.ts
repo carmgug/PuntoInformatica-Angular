@@ -1,3 +1,4 @@
+import { AccountingService } from './services/accounting/accounting.service';
 //app.module.ts importa le varie librerie
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -40,12 +41,12 @@ import { HomePageComponent } from './home-page/home-page.component';
     HttpClientModule,
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8081/users/logged'],
+          allowedUrls: ['https://localhost:8081/'],
           sendAccessToken: true
       }
     })
   ],
-  providers: [],
+  providers: [AccountingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
