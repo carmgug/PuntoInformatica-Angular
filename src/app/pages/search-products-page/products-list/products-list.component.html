@@ -1,0 +1,72 @@
+<!--Barra di ricerca-->
+<div class=".container.is-widescreen">
+  <div class="notification is-info">
+
+    <form #myForm="ngForm" class="field has-addons">
+
+
+
+
+
+      <input required productName class="input is-primary" type="text" name="productName" placeholder="Nome del prodotto"  required [(ngModel)]="product.name" />
+
+
+
+      <p class="control">
+        <span class="select is-primary">
+          <select name="productType" [(ngModel)]="product.type">
+            <option *ngFor="let type of availableTypes" [value] ="type" >{{type}}</option>
+          </select>
+        </span>
+      </p>
+
+
+
+
+
+      <p class="control">
+        <span class="select is-primary">
+          <select name="productCategory"   [(ngModel)]="product.category" >
+            <option *ngFor="let category of availableCategories" [value]="category" >{{category}}</option>
+          </select>
+        </span>
+      </p>
+
+
+
+      <div class="control">
+        <button type="submit" [disabled]="!myForm.valid" class="button is-primary" (click)="search()">Cerca</button>
+      </div>
+
+
+
+    </form>
+  </div>
+</div>
+<!--Lista prodotti-->
+<div class=".container.is-widescreen" *ngIf="searchedProducts.length != 0">
+  <div class="notification is-primary is-light" *ngIf="searchedProducts.length != 0">
+    <a>
+    <div class="box" *ngFor="let p of searchedProducts" routerLink="/searchProducts/{{p.id}}">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="{{p.urlImage}}" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{p.name}}</strong> <small> Type:{{p.type}}</small> <small> Category:{{p.category}}</small>
+              <br>
+              {{p.description}}
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+    </a>
+
+  </div>
+</div>
+

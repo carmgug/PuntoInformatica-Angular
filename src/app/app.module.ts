@@ -1,3 +1,4 @@
+
 import { AccountingService } from './services/accounting/accounting.service';
 //app.module.ts importa le varie librerie
 import { NgModule } from '@angular/core';
@@ -6,6 +7,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//components
+import { ProductsListComponent } from './pages/search-products-page/products-list/products-list.component';
+import { ProductSingleComponent } from './pages/search-products-page/product-single/product-single.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 //keycloack
 import { HttpClientModule } from '@angular/common/http';
@@ -16,8 +23,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -29,14 +38,20 @@ import { HomePageComponent } from './home-page/home-page.component';
     AppComponent,
     TopBarComponent,
     HomePageComponent,
+    ProductSingleComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatIconModule,
     MatBadgeModule,
     MatButtonModule,
     MatToolbarModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatCardModule,
     BrowserAnimationsModule,
     HttpClientModule,
     OAuthModule.forRoot({

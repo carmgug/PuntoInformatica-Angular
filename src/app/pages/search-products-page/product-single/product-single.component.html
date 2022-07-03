@@ -1,0 +1,99 @@
+<section class="section has-background-primary" >
+
+  <section class=".container.is-widescreen">
+
+      <section class="card">
+
+        <div class="card" *ngIf="product">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-128x128">
+                  <img [src]="product.urlImage" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">{{product.name}}</p>
+                <p class="subtitle is-6">
+                  {{product.description}}
+                  <br>
+                  <a [href]="product.url">Ulteriori informazioni</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  </section>
+</section>
+<!--Tabella dei negozi dove poter comprare il prodotto-->
+<section class="section">
+  <div class="table-container">
+    <table class="table mx-auto">
+      <thead>
+        <tr>
+          <th><abbr title="Store name">Nome Negozio</abbr></th>
+          <th><abbr title="Contry">Nazione</abbr></th>
+          <th><abbr title="Region">Regione</abbr></th>
+          <th><abbr title="Province">Provincia</abbr></th>
+          <th><abbr title="Address">Indirizzo</abbr></th>
+          <th><abbr title="PostalCode">Codice Postale</abbr></th>
+          <th><abbr title="Available">Disponibilità</abbr></th>
+          <th><abbr title="Available">Price</abbr></th>
+          <th><abbr title="List of buttons">Azioni</abbr></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th><abbr title="Store name">Nome Negozio</abbr></th>
+          <th><abbr title="Contry">Nazione</abbr></th>
+          <th><abbr title="Region">Regione</abbr></th>
+          <th><abbr title="Province">Provincia</abbr></th>
+          <th><abbr title="Address">Indirizzo</abbr></th>
+          <th><abbr title="PostalCode">Codice Postale</abbr></th>
+          <th><abbr title="Available">Disponibilità</abbr></th>
+          <th><abbr title="Available">Price</abbr></th>
+          <th><abbr title="List of buttons">Azioni</abbr></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let storedProduct of storedProducts">
+          <th>{{storedProduct.store.id}}</th>
+          <th>{{storedProduct.store.country}}</th>
+          <th>{{storedProduct.store.region}}</th>
+          <th>{{storedProduct.store.province}}</th>
+          <th>{{storedProduct.store.address}}</th>
+          <th>{{storedProduct.store.postalCode}}</th>
+          <th>{{storedProduct.quantity}}</th>
+          <th>{{storedProduct.price}}</th>
+          <th>DA IMPLEMENTARE UNA LISTA DI BOTTONI</th>
+        </tr>
+        <!--
+        <tr>
+          <th>1</th>
+          <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
+          </td>
+          <td>38</td>
+          <td>23</td>
+          <td>12</td>
+          <td>3</td>
+          <td>68</td>
+          <td>36</td>
+          <td>+32</td>
+          <td>81</td>
+          <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
+        </tr>
+        -->
+
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+  </div>
+</section>
