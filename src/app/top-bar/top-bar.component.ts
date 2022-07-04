@@ -1,5 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AccountingService } from './../services/accounting/accounting.service';
+
+
+
 
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +17,7 @@ export class TopBarComponent implements OnInit {
 
   title = 'PuntoInformatica';
   user : any;
+  logged: boolean= false;
 
 
   constructor(private authService : AuthService,private accountingService:AccountingService ) {
@@ -21,14 +25,21 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit(): void  {
 
+
   }
 
    public sendUserToDB(){
+
     this.accountingService.getUser()
     .subscribe(data => {
       console.log(data);
       this.user=data;
+    },
+    (error) => {                              //Error callback
+       var e:HttpErrorResponse= error;
+       alert("Il login non è andato a buon fine, Prova ad effetuare il logout e il login o contatta l'amministratore.");
     });
+
     console.log(this.authService.getInformation()); //debug
   }
 
@@ -47,11 +58,9 @@ export class TopBarComponent implements OnInit {
   }
 
 
-
   public works(){
-    alert("Il tasto funziona");
+    alert("il taso funziona!");
   }
-
   public authentication(){
     if(!this.isAuthenticated()){ this.login(); }
     else {this.logout();}

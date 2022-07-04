@@ -1,3 +1,4 @@
+import { ShoppingcartPageComponent } from './pages/purchases-cart-page/shoppingcart-page/shoppingcart-page.component';
 import { ProductSingleComponent } from './pages/search-products-page/product-single/product-single.component';
 import { ProductsListComponent } from './pages/search-products-page/products-list/products-list.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'searchProducts/:product',
     component: ProductSingleComponent
+  },
+  {
+    path: 'myCart',
+    component: ShoppingcartPageComponent
   }
 
 ];

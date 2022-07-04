@@ -27,6 +27,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
+import { ShoppingcartPageComponent } from './pages/purchases-cart-page/shoppingcart-page/shoppingcart-page.component';
+import { PurchasesPageComponent } from './pages/purchases-cart-page/purchases-page/purchases-page.component';
 
 
 
@@ -39,7 +41,9 @@ import { FormsModule } from '@angular/forms';
     TopBarComponent,
     HomePageComponent,
     ProductSingleComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    ShoppingcartPageComponent,
+    PurchasesPageComponent
   ],
   imports: [
     BrowserModule,

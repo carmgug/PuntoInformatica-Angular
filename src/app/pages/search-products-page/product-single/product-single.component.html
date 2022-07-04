@@ -66,8 +66,17 @@
           <th>{{storedProduct.store.address}}</th>
           <th>{{storedProduct.store.postalCode}}</th>
           <th>{{storedProduct.quantity}}</th>
-          <th>{{storedProduct.price}}</th>
-          <th>DA IMPLEMENTARE UNA LISTA DI BOTTONI</th>
+          <th>{{storedProduct.price}}€</th>
+          <th>
+            <form #myForm="ngForm" class="field has-addons">
+              <select required name="selectedQuantity" [(ngModel)]="storedProduct.selectedQuantity">
+                <option *ngFor="let n of numSequence(storedProduct.quantity); let selectedQuantity = index;"  >{{selectedQuantity+1}}</option>
+              </select>
+              <div class="control">
+                <button [disabled]="!myForm.valid" class="button is-primary" (click)="action(storedProduct)">Aggiungi al carrello</button>
+              </div>
+            </form>
+          </th>
         </tr>
         <!--
         <tr>

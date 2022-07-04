@@ -1,3 +1,4 @@
+import { ResponseMessage } from './../../../entities/ResponseMessage/ResponseMessage';
 import { ProductsService } from './../../../services/products/products.service';
 import { Product } from '../../../entities/Products/product';
 import { Component, OnInit } from '@angular/core';
@@ -36,9 +37,9 @@ export class ProductsListComponent implements OnInit {
     this.searchedProducts=[];
 
     this.productsService.getByNameAndTypeAndCategory(this.product.name,this.product.type,this.product.category)
-    .subscribe(searchedProducts=>{
-      console.log(searchedProducts);
-      this.searchedProducts=searchedProducts;
+    .subscribe(responseMessage=>{
+      this.searchedProducts=responseMessage.object;
+      if(this.searchedProducts.length==0) alert(responseMessage.message);
     });
 
 

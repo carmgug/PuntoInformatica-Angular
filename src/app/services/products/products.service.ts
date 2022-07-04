@@ -19,7 +19,7 @@ export class ProductsService {
     if(name!=null && name.length!=0){format+="name="+name}
     if(type!=null && type.length!=0 && type!="Unselected Type"){format+="&type="+type}
     if(category!=null && category.length!=0 && category!="Unselected Category"){format+="&category="+category}
-    return this.http.get<Product[]>(this.ProductsUri+'/search/by_name_type_category'+format);
+    return this.http.get<ResponseMessage>(this.ProductsUri+'/search/by_name_type_category'+format);
   }
 
   public getById(id:string){

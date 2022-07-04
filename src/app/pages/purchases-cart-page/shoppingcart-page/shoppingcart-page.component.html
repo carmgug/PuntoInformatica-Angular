@@ -1,0 +1,72 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Carrello</h1>
+    </div>
+  </div>
+</section>
+<!--Avviso carrello vuoto-->
+<section class="hero is-warning" *ngIf="shoppingcart?.storedProductsInCart?.length==0">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Il tuo Carello è vuoto!!</h1>
+    </div>
+  </div>
+</section>
+
+<!--Prodotti nel carrello-->
+<div class=".container.is-widescreen"  *ngIf="shoppingcart?.storedProductsInCart?.length!=0">
+  <div class="notification is-primary is-light" >
+
+    <button class="button is-large is-fullwidth is-warning" (click)="purchase()">
+      Conferma Acquisto
+      <br>
+      {{price}}€
+    </button>
+
+
+    <div class="box" *ngFor="let storedProductInCart of shoppingcart?.storedProductsInCart">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="{{storedProductInCart.storedProduct.product.urlImage}}" alt="Image">
+          </figure>
+        </div>
+
+        <div class="media-content">
+          <div class="content">
+            <p>
+
+              <a routerLink="/searchProducts/{{storedProductInCart.storedProduct.product.id}}"><strong  >{{storedProductInCart.storedProduct.product.name}}</strong></a>
+              <br>
+              <strong>id:</strong> {{storedProductInCart.storedProduct.id}}<br>
+              <strong>Prezzo singolo prodotto:</strong> {{storedProductInCart.storedProduct.price}} € <br>
+              <strong>Numero Selezionto:</strong> {{storedProductInCart.quantity}} <br>
+              <strong>Totale: </strong>{{storedProductInCart.storedProduct.price*storedProductInCart.quantity}}€ <br>
+
+              <strong>Negozio:</strong> {{aboutStore(storedProductInCart)}}
+            </p>
+              <!--Lista di bottoni per compiere azioni-->
+
+            <!--UPDATE QUANTITY OF A PRODUCT IN CART-->
+            <form #myForm="ngForm" class="field has-addons">
+              <select  required name="selectedQuantity" [(ngModel)]="storedProductInCart.updatedQuantity">
+                <option *ngFor="let n of numSequence(storedProductInCart.storedProduct.quantity); let selectedQuantity = index;">{{selectedQuantity+1}}</option>
+              </select>
+                <button [disabled]="!myForm.valid" class="button is-warning" (click)="updateQuantity(storedProductInCart)">Update Quantity</button>
+            </form>
+
+            <!--REMOVE PRODUCT FROM A CART-->
+            <button class="button is-danger" (click)="removeProductFromCart(storedProductInCart)">Rimuovi prodotto</button>
+
+
+
+          </div>
+        </div>
+      </article>
+    </div>
+
+
+
+  </div>
+</div>

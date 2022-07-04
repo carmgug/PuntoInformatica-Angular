@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { OAuthService, NullValidationHandler, AuthConfig } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,12 @@ export class AuthService {
 
   public isauthenticated(){
     return this.oauthService.hasValidAccessToken();
+  }
+
+  public getEmail():string{
+    const currUser:User= <User> this.oauthService.getIdentityClaims();
+    return currUser.preferred_username;
+
   }
 
 
