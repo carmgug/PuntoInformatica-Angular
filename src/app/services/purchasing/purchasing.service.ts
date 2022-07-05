@@ -53,6 +53,37 @@ export class PurchasingService {
     return this.http.post<ResponseMessage>(this.purchasingUri+format,null);
   }
 
+  //TODO
+  public getPurchases(){
+    var format="/purchases/by_period"
+    return this.http.get<ResponseMessage>(this.purchasingUri+format);
+  }
+
+
+  public getPurchasesByPeriod(startDate:Date,endDate:Date){
+
+    //pattern backend = "MM-dd-yyyy"
+
+
+
+
+    var format="/purchases/by_period"
+
+    if(startDate!=null){
+      var sDate:string=(startDate.getMonth()+1)+"-"+
+      startDate.getDate()+"-"+startDate.getFullYear();
+      format+="?startDate="+sDate;
+    }
+
+    if(endDate!=null){
+      var eDate:string=(endDate.getMonth()+1)+"-"+
+      endDate.getDate()+"-"+endDate.getFullYear();
+      if(startDate!=null) format+="&endDate="+eDate;
+      else format+="?endDate="+eDate
+    }
+    return this.http.get<ResponseMessage>(this.purchasingUri+format);
+  }
+
 
 
 

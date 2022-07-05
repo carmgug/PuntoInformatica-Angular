@@ -28,7 +28,8 @@ export class TopBarComponent implements OnInit {
 
   }
 
-   public sendUserToDB(){
+  public sendUserToDB(){
+
 
     this.accountingService.getUser()
     .subscribe(data => {
@@ -44,7 +45,7 @@ export class TopBarComponent implements OnInit {
   }
 
 
-  private async login() {
+  private login() {
     this.authService.login();
 
   }

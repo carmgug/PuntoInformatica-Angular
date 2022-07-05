@@ -11,19 +11,23 @@
         </button>
 
         <!--Bottoni di gestione-->
-        <button *ngIf="!user"[disabled]="!isAuthenticated()" mat-raised-button color="warn" (click)="sendUserToDB()">
+        <button *ngIf="!user" [disabled]="!isAuthenticated()" mat-raised-button color="warn" (click)="sendUserToDB()">
           Verifica login <mat-icon>build</mat-icon>
         </button>
 
-        <button *ngIf="user" [disabled]="!isAuthenticated()" mat-raised-button  color="basic" routerLink="/searchProducts">
+        <button *ngIf="user"  mat-raised-button  color="basic" routerLink="/searchProducts">
           Cerca Prodotti <mat-icon>search</mat-icon>
         </button>
 
-        <button  *ngIf="user" [disabled]="!isAuthenticated()" mat-raised-button color="basic" routerLink="/myCart">
+        <button  *ngIf="user"  mat-raised-button color="basic" routerLink="/myCart">
           Visualizza Carrello <mat-icon>shopping_cart</mat-icon>
         </button>
 
-        <button *ngIf="user" [disabled]="!isAuthenticated()" mat-raised-button color="basic" (click)="works()">
+        <button  *ngIf="user"  mat-raised-button color="basic" routerLink="/myPurchases">
+          Visualizza Acquisti <mat-icon>payment</mat-icon>
+        </button>
+
+        <button *ngIf="user"  mat-raised-button color="basic" (click)="works()">
           Manage store database <mat-icon>build</mat-icon>
         </button>
 

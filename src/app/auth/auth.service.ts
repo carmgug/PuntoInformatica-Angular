@@ -1,6 +1,8 @@
+import { JsonToken } from './JsonToken';
 import { Injectable } from '@angular/core';
 import { OAuthService, NullValidationHandler, AuthConfig } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import jwtDecode from 'jwt-decode';
 import { User } from './user';
 
 @Injectable({
@@ -35,10 +37,15 @@ export class AuthService {
   private configure() {
     this.oauthService.configure(this.authConfig);
     this.oauthService.tokenValidationHandler = new  JwksValidationHandler();
+    this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
   public getInformation():string{
+    console.log("ciao");
+    //console.log(this.oauthService.getIdentityClaims());
+    //console.log(this.oauthService.getGrantedScopes());
+    this.getInfoAboutUser();
     return this.oauthService.getAccessToken();
   }
 
@@ -46,10 +53,21 @@ export class AuthService {
     return this.oauthService.hasValidAccessToken();
   }
 
-  public getEmail():string{
+  public getEmail(){
     const currUser:User= <User> this.oauthService.getIdentityClaims();
+
+    console.log(this.oauthService.getIdentityClaims());
+
     return currUser.preferred_username;
 
+  }
+
+  public getInfoAboutUser(){
+    const token=this.oauthService.getAccessToken();
+
+    const decodedToken=<JsonToken>jwtDecode(token);
+    console.log(decodedToken)
+    console.log(decodedToken.realm_access.roles)
   }
 
 

@@ -8,9 +8,4 @@ export class StoredProduct{
   price!:number;
   store!:Store;
   product!:Product;
-
-  public getStore():Store{
-    return this.store;
-  }
-
 }

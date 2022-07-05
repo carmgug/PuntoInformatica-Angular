@@ -67,18 +67,6 @@ export class ProductSingleComponent implements OnInit {
         }
     });
 
-
-
-      /*
-      ({
-        (responseMessage)=>{
-        alert(responseMessage.message);
-        },
-        error: (e) =>
-      })
-      */
-
-
   }
 
 }

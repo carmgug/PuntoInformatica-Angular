@@ -1,3 +1,4 @@
+import { PurchasesPageComponent } from './pages/purchases-cart-page/purchases-page/purchases-page.component';
 import { ShoppingcartPageComponent } from './pages/purchases-cart-page/shoppingcart-page/shoppingcart-page.component';
 import { ProductSingleComponent } from './pages/search-products-page/product-single/product-single.component';
 import { ProductsListComponent } from './pages/search-products-page/products-list/products-list.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'myCart',
     component: ShoppingcartPageComponent
+  },
+  {
+    path: 'myPurchases',
+    component: PurchasesPageComponent
   }
 
 ];

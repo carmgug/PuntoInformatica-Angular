@@ -29,6 +29,8 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { ShoppingcartPageComponent } from './pages/purchases-cart-page/shoppingcart-page/shoppingcart-page.component';
 import { PurchasesPageComponent } from './pages/purchases-cart-page/purchases-page/purchases-page.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 
@@ -50,6 +52,8 @@ import { PurchasesPageComponent } from './pages/purchases-cart-page/purchases-pa
     AppRoutingModule,
     FormsModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatBadgeModule,
     MatButtonModule,
     MatToolbarModule,

@@ -1,1 +1,97 @@
-<p>purchases-page works!</p>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Storico Acquisti</h1>
+    </div>
+  </div>
+</section>
+
+<!--Filtro Acquisti effettuati-->
+<section class="hero">
+  <div class="hero-body">
+
+    <div class="container has-text-centered">
+
+
+
+
+      <mat-form-field  appearance="fill"  >
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker">
+          <input matStartDate [(ngModel)]="startDate" placeholder="Start date">
+          <input matEndDate [(ngModel)]="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+
+
+
+
+        <button [disabled]="!startDate && !endDate "    class="button is-info is-light" (click)="getPurchasesByPeriod()">Filtra per Data</button>
+        <button class="button is-info is-light" (click)="getAllPurchases()">Visualizza Tutti gli Acquisti</button>
+
+
+
+
+
+    </div>
+  </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!--Avviso storico acquisti vuoto-->
+<section class="hero is-warning" *ngIf="purchases?.length==0">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Non hai effettuato nessun acquisto!!</h1>
+    </div>
+  </div>
+</section>
+
+<!--Acquisti effettuati-->
+<div class=".container.is-widescreen"  *ngIf="purchases?.length!=0">
+  <div class="notification is-primary is-light" >
+
+
+
+    <div class="box" *ngFor="let purchase of purchases">
+      <article class="media">
+
+        <div class="media-content">
+          <div class="content">
+            <p>
+
+              <strong>Acquisto effettuato il :{{purchase.purchaseTime | date:'dd/MM/yyyy'}}</strong>
+              <br>
+              <strong>id:</strong> {{purchase.id}}<br>
+              <strong>Totale:</strong> {{purchase.price}} € <br>
+            </p>
+
+
+
+
+          </div>
+        </div>
+      </article>
+    </div>
+
+
+
+  </div>
+</div>
+

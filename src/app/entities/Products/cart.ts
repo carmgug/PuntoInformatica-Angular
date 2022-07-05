@@ -20,8 +20,5 @@ export class Cart{
   id!:number;
   storedProductsInCart!:StoredProductInCart[];
 
-  public getStoredProductsInCart():StoredProductInCart[]{
-    return this.storedProductsInCart;
-  }
 
 }
