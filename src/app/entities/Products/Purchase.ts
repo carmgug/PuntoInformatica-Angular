@@ -1,4 +1,6 @@
-import { StoredProduct } from 'src/app/entities/Products/storedproduct';
+import { Product } from './product';
+import { Store } from 'src/app/entities/Stores/store';
+
 
 
 
@@ -8,12 +10,14 @@ export class Purchase {
   id!:number;
   purchaseTime!:number;
   price!:number;
-  productsInPurchase!:StoredProductInPurchase[];
+  productsInPurchase!:ProductInPurchase[];
 }
 
-export class StoredProductInPurchase{
+export class ProductInPurchase{
   id!:number;
   quantity!:number;
   price!:number;
-  storedProduct!:StoredProduct;
+  store!:Store;
+  product!:Product;
+
 }

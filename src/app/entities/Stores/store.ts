@@ -6,6 +6,7 @@ export class Store {
   province !: string;
   address !: string;
   postalCode !: number;
+  banned!:boolean;
 
 
 

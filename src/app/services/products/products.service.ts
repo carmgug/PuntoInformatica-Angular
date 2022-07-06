@@ -10,6 +10,8 @@ import { Product } from 'src/app/entities/Products/product';
 })
 export class ProductsService {
 
+
+
   private ProductsUri="https://localhost:8081/products";
 
   constructor(private http:HttpClient) { }
@@ -24,6 +26,22 @@ export class ProductsService {
 
   public getById(id:string){
     return this.http.get<ResponseMessage>(this.ProductsUri+'/search/by_id?id='+id);
+  }
+
+  public createProduct(product:Product) {
+    return this.http.post<ResponseMessage>(this.ProductsUri,product);
+
+
+  }
+
+  public banProduct(currProduct: Product) {
+    var format="/"+currProduct.id;
+    return this.http.delete<ResponseMessage>(this.ProductsUri+format);
+  }
+
+  public unBanProduct(currProduct:Product){
+    var format="/"+currProduct.id;
+    return this.http.put<ResponseMessage>(this.ProductsUri+format,null);
   }
 
 

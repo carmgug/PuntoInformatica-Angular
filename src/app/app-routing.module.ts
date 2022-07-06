@@ -1,3 +1,5 @@
+import { AdministratorPageComponent } from './pages/administrator-page/administrator-page.component';
+
 import { PurchasesPageComponent } from './pages/purchases-cart-page/purchases-page/purchases-page.component';
 import { ShoppingcartPageComponent } from './pages/purchases-cart-page/shoppingcart-page/shoppingcart-page.component';
 import { ProductSingleComponent } from './pages/search-products-page/product-single/product-single.component';
@@ -27,6 +29,10 @@ const routes: Routes = [
   {
     path: 'myPurchases',
     component: PurchasesPageComponent
+  },
+  {
+    path: 'administratorPage',
+    component: AdministratorPageComponent
   }
 
 ];

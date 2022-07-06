@@ -21,7 +21,7 @@
     <button class="button is-large is-fullwidth is-warning" (click)="purchase()">
       Conferma Acquisto
       <br>
-      {{price}}€
+      {{price | number:'1.2-2'}}€
     </button>
 
 
@@ -42,7 +42,7 @@
               <strong>id:</strong> {{storedProductInCart.storedProduct.id}}<br>
               <strong>Prezzo singolo prodotto:</strong> {{storedProductInCart.storedProduct.price}} € <br>
               <strong>Numero Selezionto:</strong> {{storedProductInCart.quantity}} <br>
-              <strong>Totale: </strong>{{storedProductInCart.storedProduct.price*storedProductInCart.quantity}}€ <br>
+              <strong>Totale: </strong>{{storedProductInCart.storedProduct.price*storedProductInCart.quantity | number:'1.2-2'}}€ <br>
 
               <strong>Negozio:</strong> {{aboutStore(storedProductInCart)}}
             </p>

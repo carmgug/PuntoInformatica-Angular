@@ -7,5 +7,6 @@ export class Product {
   description!: string;
   url!: string;
   urlImage!:string;
+  banned!:boolean;
 
 }

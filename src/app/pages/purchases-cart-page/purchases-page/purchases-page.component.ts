@@ -1,10 +1,11 @@
-import { StoredProductInPurchase } from './../../../entities/Products/Purchase';
+import { ProductInPurchase } from './../../../entities/Products/Purchase';
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './../../../auth/auth.service';
 import { PurchasingService } from './../../../services/purchasing/purchasing.service';
 import { Component, OnInit } from '@angular/core';
 import { Purchase } from 'src/app/entities/Products/Purchase';
-import { ThisReceiver } from '@angular/compiler';
+
 import { Store } from 'src/app/entities/Stores/store';
 
 @Component({
@@ -82,12 +83,12 @@ export class PurchasesPageComponent implements OnInit {
   });
   }
 
-  public infoAboutProductInPurchase(productInPurchase:StoredProductInPurchase){
+  public infoAboutProductInPurchase(productInPurchase:ProductInPurchase){
     var result:string;
     result=" (Qt: "+productInPurchase.quantity+
     " Prezzo Totale: "+productInPurchase.price+"€ ,"+
     " Prezzo Singolo: "+(productInPurchase.price/productInPurchase.quantity)+"€ ,"+
-    " Store: "+this.infoAboutStore(productInPurchase.storedProduct.store)+");";
+    " Store: "+this.infoAboutStore(productInPurchase.store)+");";
     return result;
   }
 

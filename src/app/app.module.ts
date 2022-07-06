@@ -1,3 +1,4 @@
+import { AdministratorPageComponent } from './pages/administrator-page/administrator-page.component';
 
 import { AccountingService } from './services/accounting/accounting.service';
 //app.module.ts importa le varie librerie
@@ -34,6 +35,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 
 
 
+
 //test angular material
 
 
@@ -45,7 +47,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     ProductSingleComponent,
     ProductsListComponent,
     ShoppingcartPageComponent,
-    PurchasesPageComponent
+    PurchasesPageComponent,
+    AdministratorPageComponent
   ],
   imports: [
     BrowserModule,

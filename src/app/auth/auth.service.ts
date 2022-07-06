@@ -42,10 +42,6 @@ export class AuthService {
   }
 
   public getInformation():string{
-    console.log("ciao");
-    //console.log(this.oauthService.getIdentityClaims());
-    //console.log(this.oauthService.getGrantedScopes());
-    this.getInfoAboutUser();
     return this.oauthService.getAccessToken();
   }
 
@@ -55,19 +51,21 @@ export class AuthService {
 
   public getEmail(){
     const currUser:User= <User> this.oauthService.getIdentityClaims();
-
-    console.log(this.oauthService.getIdentityClaims());
-
     return currUser.preferred_username;
 
   }
 
-  public getInfoAboutUser(){
+  public getInfoAboutUser():JsonToken{
     const token=this.oauthService.getAccessToken();
-
     const decodedToken=<JsonToken>jwtDecode(token);
-    console.log(decodedToken)
-    console.log(decodedToken.realm_access.roles)
+    return decodedToken;
+  }
+
+  public isAdmin(){
+    const token=this.oauthService.getAccessToken();
+    const decodedToken=<JsonToken>jwtDecode(token);
+    return decodedToken.realm_access.roles.includes('app-admin');
+
   }
 
 

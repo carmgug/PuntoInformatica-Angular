@@ -78,12 +78,12 @@
 
               <strong>Acquisto effettuato il :{{purchase.purchaseTime | date:'MM/dd/yyyy'}}</strong>
               <br>
-              <strong>id:</strong> {{purchase.id}}<br>
-              <strong>Totale:</strong> {{purchase.price}} € <br>
+              <strong>ID:</strong> {{purchase.id}}<br>
+              <strong>Totale:</strong> {{purchase.price | number:'1.2-2'}} € <br>
               <strong>Lista Prodotti Acquistati: </strong>
               <span *ngFor="let productInPurchase of purchase?.productsInPurchase">
-                <a routerLink="/searchProducts/{{productInPurchase.storedProduct.product.id}}">
-                  {{productInPurchase.storedProduct.product.name}}
+                <a routerLink="/searchProducts/{{productInPurchase.product.id}}">
+                  {{productInPurchase.product.name}}
                 </a>
                 {{infoAboutProductInPurchase(productInPurchase)}}
 

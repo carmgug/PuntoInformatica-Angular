@@ -1,0 +1,272 @@
+<!--Sezione negozi-->
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Gestione Negozi</h1>
+    </div>
+  </div>
+</section>
+
+<!--Ricerca Negozi-->
+<div class=".container.is-widescreen">
+  <div class="notification is-info">
+
+    <form #myFormSerachStore="ngForm" class="field has-addons">
+
+      <input required class="input is-primary" type="text" name="storeCountry" placeholder="Nazione"  [(ngModel)]="store.country" />
+      <input required class="input is-primary" type="text" name="storeRegion" placeholder="Regione"   [(ngModel)]="store.region" />
+      <input class="input is-primary" type="text" name="storeCity" placeholder="Città"  [(ngModel)]="store.city" />
+      <input maxlength="5" class="input is-primary" type="text" name="storeProvince"  placeholder="Provincia"   [(ngModel)]="store.province" />
+      <input class="input is-primary" type="text" name="storeAddress" placeholder="Indirizzo" [(ngModel)]="store.address" />
+      <input class="input is-primary" type="number" name="storePostalCode"  placeholder="Codice Postale" [(ngModel)]="store.postalCode" />
+
+      <div class="control">
+        <button type="submit" [disabled]="!myFormSerachStore.valid" class="button is-primary" (click)="searchStores()">Cerca</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--Creazione Negozio-->
+<div class=".container.is-widescreen">
+  <div class="notification">
+
+    <form #myFormCreateStore="ngForm" class="field has-addons">
+
+      <input required class="input is-primary" type="text" name="storeToCreateCountry" placeholder="Nazione"  [(ngModel)]="storeToCreate.country" />
+      <input required class="input is-primary" type="text" name="storeToCreateRegion" placeholder="Regione"   [(ngModel)]="storeToCreate.region" />
+      <input required class="input is-primary" type="text" name="storeToCreateCity" placeholder="Città"  [(ngModel)]="storeToCreate.city" />
+      <input required maxlength="5" class="input is-primary" type="text" name="storeToCreateProvince"  placeholder="Provincia"   [(ngModel)]="storeToCreate.province" />
+      <input required class="input is-primary" type="text" name="storeToCreateAddress" placeholder="Indirizzo" [(ngModel)]="storeToCreate.address" />
+      <input required class="input is-primary" type="number" name="storeToCreatePostalCode"  placeholder="Codice Postale" [(ngModel)]="storeToCreate.postalCode" />
+
+      <div class="control">
+        <button type="submit" [disabled]="!myFormCreateStore.valid" class="button is-primary" (click)="createStore(storeToCreate)">Crea Negozio</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--Tabella Negozi-->
+<section class="section" *ngIf="searchedStore.length!=0">
+  <div class="table-container">
+    <table class="table mx-auto">
+      <thead>
+        <tr>
+          <th><abbr title="StoreID">ID Negozio</abbr></th>
+          <th><abbr title="Contry">Nazione</abbr></th>
+          <th><abbr title="Region">Regione</abbr></th>
+          <th><abbr title="City">Città</abbr></th>
+          <th><abbr title="Province">Provincia</abbr></th>
+          <th><abbr title="Address">Indirizzo</abbr></th>
+          <th><abbr title="PostalCode">Codice Postale</abbr></th>
+          <th><abbr title="List of buttons">Azioni</abbr></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th><abbr title="StoreID">ID Negozio</abbr></th>
+          <th><abbr title="Contry">Nazione</abbr></th>
+          <th><abbr title="Region">Regione</abbr></th>
+          <th><abbr title="City">Città</abbr></th>
+          <th><abbr title="Province">Provincia</abbr></th>
+          <th><abbr title="Address">Indirizzo</abbr></th>
+          <th><abbr title="PostalCode">Codice Postale</abbr></th>
+          <th><abbr title="List of buttons">Azioni</abbr></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let currStore of searchedStore">
+          <th>{{currStore.id}}</th>
+          <th>{{currStore.country}}</th>
+          <th>{{currStore.region}}</th>
+          <th>{{currStore.city}}</th>
+          <th>{{currStore.province}}</th>
+          <th>{{currStore.address}}</th>
+          <th>{{currStore.postalCode}}</th>
+          <th>
+              <div class="control" *ngIf="!currStore.banned">
+                <button class="button is-danger" (click)="banStore(currStore)">Ban Store</button>
+              </div>
+              <div class="control" *ngIf="currStore.banned">
+                <button class="button is-danger" (click)="unBanStore(currStore)">UnBan Store</button>
+              </div>
+          </th>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!--Sezione prodotti-->
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Gestione Prodotti</h1>
+    </div>
+  </div>
+</section>
+
+<!--Barra di ricerca-->
+<div class=".container.is-widescreen">
+  <div class="notification is-info">
+
+    <div class="field has-addons">
+
+      <input  productName class="input is-primary" type="text" name="productName" placeholder="Nome del prodotto"  required [(ngModel)]="product.name" />
+
+      <p class="control">
+        <span class="select is-primary">
+          <select name="productType" [(ngModel)]="product.type">
+            <option *ngFor="let type of availableTypes" [value] ="type" >{{type}}</option>
+          </select>
+        </span>
+      </p>
+
+      <p class="control">
+        <span class="select is-primary">
+          <select name="productCategory"   [(ngModel)]="product.category" >
+            <option *ngFor="let category of availableCategories" [value]="category" >{{category}}</option>
+          </select>
+        </span>
+      </p>
+
+      <div class="control">
+        <button type="submit" class="button is-primary" (click)="searchProduct()">Cerca</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Barra Creazione Prodotti-->
+<div class=".container.is-widescreen">
+  <div class="notification">
+    <form #myFormAddProduct="ngForm" class="field has-addons">
+
+      <input required class="input is-primary" type="text" name="productName" placeholder="Nome del prodotto"  required [(ngModel)]="productToCreate.name" />
+      <input required class="input is-primary" type="number" name="productBarCode" placeholder="BarCode del prodotto"  required [(ngModel)]="productToCreate.barCode" />
+      <input required class="input is-primary" type="text" name="productUrlImage" placeholder="Url immagine del prodotto"   [(ngModel)]="productToCreate.urlImage" />
+      <input required class="input is-primary" type="text" name="productUrl" placeholder="Url produttore"   [(ngModel)]="productToCreate.url" />
+      <input required class="input is-primary" type="text" name="productDescription" placeholder="Descrizione"   [(ngModel)]="productToCreate.description" />
+
+      <p class="control">
+        <span class="select is-primary">
+          <select required name="productType" [(ngModel)]="productToCreate.type">
+            <option *ngFor="let type of availableTypes" [value] ="type" >{{type}}</option>
+          </select>
+        </span>
+      </p>
+
+      <p class="control">
+        <span class="select is-primary">
+          <select required name="productCategory"   [(ngModel)]="productToCreate.category" >
+            <option *ngFor="let category of availableCategories" [value]="category" >{{category}}</option>
+          </select>
+        </span>
+      </p>
+
+      <div class="control">
+        <button type="submit" [disabled]="!myFormAddProduct.valid" class="button is-danger" (click)="createProduct()">Crea</button>
+      </div>
+
+    </form>
+</div>
+</div>
+<!--Tabella Prodotti-->
+<section class="section" *ngIf="searchedProduct.length!=0">
+  <div class="table-container">
+    <table class="table mx-auto">
+      <thead>
+        <tr>
+          <th><abbr title="ProductID">ID</abbr></th>
+          <th><abbr title="ProductName">Nome</abbr></th>
+          <th><abbr title="ProductType">Tipo</abbr></th>
+          <th><abbr title="ProductCategory">Categoria</abbr></th>
+          <th><abbr title="ProductBarCode">Codice a barre</abbr></th>
+          <th><abbr title="ProductDescription">Descrizione</abbr></th>
+          <th><abbr title="List of buttons">Azioni</abbr></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th><abbr title="ProductID">ID</abbr></th>
+          <th><abbr title="ProductName">Nome</abbr></th>
+          <th><abbr title="ProductType">Tipo</abbr></th>
+          <th><abbr title="ProductCategory">Categoria</abbr></th>
+          <th><abbr title="ProductBarCode">Codice a barre</abbr></th>
+          <th><abbr title="ProductDescription">Descrizione</abbr></th>
+          <th><abbr title="List of buttons">Azioni</abbr></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let currProduct of searchedProduct">
+          <th>{{currProduct.id}}</th>
+          <th>{{currProduct.name}}</th>
+          <th>{{currProduct.type}}</th>
+          <th>{{currProduct.category}}</th>
+          <th>{{currProduct.barCode}}</th>
+          <th>{{currProduct.description}}</th>
+          <th>
+              <div class="control" *ngIf="!currProduct.banned">
+                <button class="button is-danger" (click)="banProduct(currProduct)">Ban Product</button>
+              </div>
+              <div class="control" *ngIf="currProduct.banned">
+                <button class="button is-danger" (click)="unBanProduct(currProduct)">UnBan Product</button>
+              </div>
+          </th>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!--Sezione StoredProducts-->
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Gestione Prodotti venduti</h1>
+    </div>
+  </div>
+</section>
+<!--Modifica Quantità StoredProducts-->
+<div class=".container.is-widescreen">
+  <div class="notification">
+    <form #myFormAddStoredProduct="ngForm" class="field has-addons">
+
+      <input required class="input is-primary" type="number" name="storedProductStore" placeholder="ID Store"   [(ngModel)]="idStore" />
+
+      <input required class="input is-primary" type="number" name="productID" placeholder="ID prodotto"  [(ngModel)]="idProduct" />
+
+
+
+      <input required class="input is-primary" type="number" name="storedProductQuantity" placeholder="Quantità del prodotto"  [(ngModel)]="quantityStoredProduct" />
+      <input required class="input is-primary" type="number" name="storedProductPrice" placeholder="Prezzo del prodotto"  [(ngModel)]="priceStoredProduct" />
+
+      <div class="control">
+        <button type="submit" [disabled]="!idStore || !idProduct || !(quantityStoredProduct || priceStoredProduct)" class="button is-danger" >Update</button>
+      </div>
+
+      <div class="control">
+        <button type="submit" [disabled]="!myFormAddStoredProduct.valid" class="button is-danger" >Crea</button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -36,10 +36,17 @@ export class ProductSingleComponent implements OnInit {
       const idProduct = params['product'];
 
       this.productService.getById(idProduct)
-      .subscribe(responseMessage=>{
+      .subscribe(
+        responseMessage=>{
         console.log(responseMessage);
         this.product=responseMessage.object;
-      });
+        },
+        error=>{
+          var e:HttpErrorResponse=error;
+          alert(e.error.message);
+          window.location.assign("http://localhost:4200");
+        }
+      );
 
       this.storeService.getStoredProductsByProduct(idProduct)
       .subscribe(responseMessage=>{
