@@ -71,6 +71,20 @@ export class AdministratorPageComponent implements OnInit {
     });
   }
 
+  public createStore(currStore:Store){
+    this.storeService.createStore(currStore)
+      .subscribe({
+        next: (responseMessage) =>{
+          alert(responseMessage.message);
+        },
+        error: (e) =>{
+          var errorHttp:HttpErrorResponse=e;
+          alert(errorHttp.error.message);
+        }
+    });
+
+  }
+
   public banStore(currStore:Store){
     this.storeService.banStore(currStore)
       .subscribe({
@@ -100,20 +114,10 @@ export class AdministratorPageComponent implements OnInit {
   }
 
 
+  /*
+    Metodi Gestione Prodotti
+  */
 
-  public createStore(currStore:Store){
-    this.storeService.createStore(currStore)
-      .subscribe({
-        next: (responseMessage) =>{
-          alert(responseMessage.message);
-        },
-        error: (e) =>{
-          var errorHttp:HttpErrorResponse=e;
-          alert(errorHttp.error.message);
-        }
-    });
-
-  }
 
   public searchProduct(){
     this.productService.getByNameAndTypeAndCategory(this.product.name,this.product.type,this.product.category)
@@ -168,6 +172,60 @@ export class AdministratorPageComponent implements OnInit {
         }
     });
   }
+
+
+  /*
+    Metodi Gestione StoredProduct
+    //StoredProducts
+    idStore!:number;
+    idProduct!:number;
+    quantityStoredProduct!:number;
+    priceStoredProduct!:number;
+
+    productStoredProduct:Product=new Product();
+  */
+
+
+    public createStoredProduct(){
+      this.storeService.createStoredProduct(this.idStore,this.idProduct,this.quantityStoredProduct,this.priceStoredProduct)
+        .subscribe({
+          next: (responseMessage) =>{
+            alert(responseMessage.message);
+          },
+          error: (e) =>{
+            var errorHttp:HttpErrorResponse=e;
+            alert(errorHttp.error.message);
+          }
+      })
+
+    }
+    public deleteStoredProduct(){
+      this.storeService.deleteStoredProduct(this.idStore,this.idProduct)
+      .subscribe({
+        next: (responseMessage) =>{
+          alert(responseMessage.message);
+        },
+        error: (e) =>{
+          var errorHttp:HttpErrorResponse=e;
+          alert(errorHttp.error.message);
+        }
+    });
+    }
+
+    public updateStoredProduct(){
+      this.storeService.updateStoredProduct(this.idStore,this.idProduct,this.quantityStoredProduct,this.priceStoredProduct)
+        .subscribe({
+          next: (responseMessage) =>{
+            alert(responseMessage.message);
+          },
+          error: (e) =>{
+            var errorHttp:HttpErrorResponse=e;
+            alert(errorHttp.error.message);
+          }
+      });
+    }
+
+
 
 
 

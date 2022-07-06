@@ -260,11 +260,15 @@
       <input required class="input is-primary" type="number" name="storedProductPrice" placeholder="Prezzo del prodotto"  [(ngModel)]="priceStoredProduct" />
 
       <div class="control">
-        <button type="submit" [disabled]="!idStore || !idProduct || !(quantityStoredProduct || priceStoredProduct)" class="button is-danger" >Update</button>
+        <button type="submit" [disabled]="!idStore || !idProduct || !(quantityStoredProduct || priceStoredProduct)" class="button is-danger" (click)="updateStoredProduct()" >Update</button>
       </div>
 
       <div class="control">
-        <button type="submit" [disabled]="!myFormAddStoredProduct.valid" class="button is-danger" >Crea</button>
+        <button type="submit" [disabled]="!myFormAddStoredProduct.valid" class="button is-danger" (click)="createStoredProduct()" >Crea</button>
+      </div>
+
+      <div class="control">
+        <button type="submit" [disabled]="!idStore || !idProduct" class="button is-danger" (click)="deleteStoredProduct()">Delete</button>
       </div>
 
     </form>
